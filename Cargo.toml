@@ -1,8 +1,14 @@
 [package]
 name = "nom-reprap-response"
+description = "A nom-based parser for serial response for RepRap firmwares primarily targeting Marlin."
 version = "0.1.0"
 authors = ["D1plo1d <thatotherdude@gmail.com>"]
 edition = "2018"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/D1plo1d/nom-reprap-response"
+homepage = "https://github.com/D1plo1d/nom-reprap-response"
+documentation = "https://docs.rs/nom-reprap-response"
+keywords = ["reprap", "gcode", "marlin", "parser", "serial"]
 
 [[bench]]
 name = "parse_response_benchmark"
