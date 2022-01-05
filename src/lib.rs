@@ -33,6 +33,7 @@ pub mod sd_responses;
 mod tests;
 
 #[derive(Clone, Debug, PartialEq)]
+#[cfg_attr(feature = "serde", serde::Serialize)]
 pub enum Response {
     Greeting,
     Ok(Option<Feedback>),
@@ -48,6 +49,7 @@ pub enum Response {
 }
 
 #[derive(Clone, Debug, PartialEq)]
+#[cfg_attr(feature = "serde", serde::Serialize)]
 pub struct Resend {
     pub line_number: u32,
 }
