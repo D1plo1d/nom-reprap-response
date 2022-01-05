@@ -14,13 +14,7 @@ use super::{
 };
 
 #[derive(Clone, Debug, PartialEq)]
-pub enum Busy {
-    Processing,
-    PausedForUser,
-    Other(String),
-}
-
-#[derive(Clone, Debug, PartialEq)]
+#[cfg_attr(feature = "serde", derive(serde::Serialize))]
 pub enum Feedback {
     SDCard(SDCard),
     ActualTemperatures(Vec<(String, f32)>),
@@ -33,20 +27,31 @@ pub enum Feedback {
 }
 
 #[derive(Clone, Debug, PartialEq)]
+#[cfg_attr(feature = "serde", derive(serde::Serialize))]
 pub struct Positions {
     pub target_positions: Option<Vec<(String, f32)>>,
     pub actual_positions: Vec<(String, f32)>,
 }
 
 #[derive(Clone, Debug, PartialEq)]
+#[cfg_attr(feature = "serde", derive(serde::Serialize))]
 pub struct StartSDWrite {
     pub filename: String,
 }
 
 #[derive(Clone, Debug, PartialEq)]
+#[cfg_attr(feature = "serde", derive(serde::Serialize))]
 pub struct SDCard {
     pub enabled: bool,
     pub size: Option<u32>,
+}
+
+#[derive(Clone, Debug, PartialEq)]
+#[cfg_attr(feature = "serde", derive(serde::Serialize))]
+pub enum Busy {
+    Processing,
+    PausedForUser,
+    Other(String),
 }
 
 pub fn feedback_resp<'r>(input: &'r str) ->  IResult<&'r str, Response> {
