@@ -44,7 +44,7 @@ pub enum Response {
     Error(String),
     Warning(String),
     Resend(Resend),
-    Capability(String, bool),
+    Capability(Capability),
     FirmwareVersion(String),
     Unknown,
 }
@@ -53,6 +53,13 @@ pub enum Response {
 #[cfg_attr(feature = "serde", derive(serde::Serialize))]
 pub struct Resend {
     pub line_number: u32,
+}
+
+#[derive(Clone, Debug, PartialEq)]
+#[cfg_attr(feature = "serde", derive(serde::Serialize))]
+pub struct Capability {
+    pub key: String,
+    pub enabled: bool,
 }
 
 pub fn parse_response<'r>(src: &'r str) -> IResult<&'r str, (String, Response)> {
@@ -292,7 +299,10 @@ pub fn capability<'r>(input: &'r str) ->  IResult<&'r str, Response> {
             ),
         ),
         |(capability, enabled): (&str, char)| {
-            Response::Capability(capability.to_string(), enabled == '1')
+            Response::Capability(Capability {
+                key: capability.to_string(),
+                enabled: enabled == '1'
+            })
         },
     )(input)
 }
