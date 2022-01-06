@@ -15,7 +15,7 @@ use super::{
 
 #[derive(Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize))]
-#[cfg_attr(feature = "serde", serde(tag = "type", content = "feedback"))]
+#[cfg_attr(feature = "serde", serde(tag = "type", content = "content", rename_all = "camelCase"))]
 pub enum Feedback {
     SDCard(SDCard),
     ActualTemperatures(Vec<(String, f32)>),
@@ -29,6 +29,7 @@ pub enum Feedback {
 
 #[derive(Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize))]
+#[cfg_attr(feature = "serde", serde(rename_all = "camelCase"))]
 pub struct Positions {
     pub target_positions: Option<Vec<(String, f32)>>,
     pub actual_positions: Vec<(String, f32)>,
@@ -36,12 +37,14 @@ pub struct Positions {
 
 #[derive(Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize))]
+#[cfg_attr(feature = "serde", serde(rename_all = "camelCase"))]
 pub struct StartSDWrite {
     pub filename: String,
 }
 
 #[derive(Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize))]
+#[cfg_attr(feature = "serde", serde(rename_all = "camelCase"))]
 pub struct SDCard {
     pub enabled: bool,
     pub size: Option<u32>,
@@ -49,6 +52,7 @@ pub struct SDCard {
 
 #[derive(Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize))]
+#[cfg_attr(feature = "serde", serde(tag = "type", content = "content", rename_all = "camelCase"))]
 pub enum Busy {
     Processing,
     PausedForUser,

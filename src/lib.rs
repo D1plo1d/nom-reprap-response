@@ -34,7 +34,7 @@ mod tests;
 
 #[derive(Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize))]
-#[cfg_attr(feature = "serde", serde(tag = "type", content = "content"))]
+#[cfg_attr(feature = "serde", serde(tag = "type", content = "content", rename_all = "camelCase"))]
 pub enum Response {
     Greeting,
     Ok(Option<Feedback>),
@@ -51,12 +51,14 @@ pub enum Response {
 
 #[derive(Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize))]
+#[cfg_attr(feature = "serde", serde(rename_all = "camelCase"))]
 pub struct Resend {
     pub line_number: u32,
 }
 
 #[derive(Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize))]
+#[cfg_attr(feature = "serde", serde(rename_all = "camelCase"))]
 pub struct Capability {
     pub key: String,
     pub enabled: bool,
