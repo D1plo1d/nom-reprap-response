@@ -15,6 +15,7 @@ use super::{
 
 #[derive(Clone, Debug, PartialEq)]
 #[cfg_attr(feature = "serde", derive(serde::Serialize))]
+#[cfg_attr(feature = "serde", serde(tag = "type"))]
 pub enum Feedback {
     SDCard(SDCard),
     ActualTemperatures(Vec<(String, f32)>),
